@@ -1,11 +1,15 @@
 import Users from '../models/Users';
 
 export const getUsers = async (req, res) => {
-
+    try {
+        const users = await Users.find().sort({ createdAt: -1 });
+        res.status(200).json({ ok: true, data: users });
+    } catch (error) {
+        res.status(500).json({ ok: true, data: error })
+    }
 }
 
 export const getUserByNickName = async (req, res) => {
-
 }
 
 export const createUser = async (req, res) => {
